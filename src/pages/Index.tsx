@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,6 +14,7 @@ import {
   ChevronRight,
   Award,
   Clock,
+  Zap,
 } from "lucide-react";
 
 // Sample data
@@ -23,12 +25,18 @@ const students = [
 ];
 
 const classes = [
-  { id: 1, name: "Primary 1", teacher: "Mrs. Nakabugo", students: 35 },
-  { id: 2, name: "Primary 2", teacher: "Mr. Kyeyune", students: 38 },
-  { id: 3, name: "Primary 3", teacher: "Miss Nambi", students: 36 },
-  { id: 4, name: "Primary 4", teacher: "Mr. Okiror", students: 40 },
-  { id: 5, name: "Primary 5", teacher: "Mrs. Nankunda", students: 37 },
-  { id: 6, name: "Primary 6", teacher: "Mr. Kasozi", students: 39 },
+  // Elementary Section
+  { id: 1, name: "Baby", section: "Elementary", teacher: "Mrs. Nakabugo", students: 35 },
+  { id: 2, name: "Middle", section: "Elementary", teacher: "Mr. Kyeyune", students: 38 },
+  { id: 3, name: "Top", section: "Elementary", teacher: "Miss Nambi", students: 36 },
+  // Primary Section
+  { id: 4, name: "P.1", section: "Primary", teacher: "Mr. Okiror", students: 40 },
+  { id: 5, name: "P.2", section: "Primary", teacher: "Mrs. Nankunda", students: 37 },
+  { id: 6, name: "P.3", section: "Primary", teacher: "Mr. Kasozi", students: 39 },
+  { id: 7, name: "P.4", section: "Primary", teacher: "Mrs. Akello", students: 41 },
+  { id: 8, name: "P.5", section: "Primary", teacher: "Mr. Ssemanda", students: 38 },
+  { id: 9, name: "P.6", section: "Primary", teacher: "Miss Katende", students: 36 },
+  { id: 10, name: "P.7", section: "Primary", teacher: "Mr. Mukasa", students: 33 },
 ];
 
 const events = [
@@ -39,6 +47,7 @@ const events = [
 
 export default function Index() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,6 +66,15 @@ export default function Index() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate("/promotions")}
+              className="border-border text-foreground hover:bg-secondary"
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              Promotions
+            </Button>
             <Button variant="ghost" size="icon">
               <Bell className="w-5 h-5" />
             </Button>
@@ -98,7 +116,7 @@ export default function Index() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">Total Classes</p>
-                    <p className="text-3xl font-bold text-foreground mt-2">6</p>
+                    <p className="text-3xl font-bold text-foreground mt-2">10</p>
                   </div>
                   <BookOpen className="w-8 h-8 text-primary opacity-20" />
                 </div>
@@ -234,29 +252,66 @@ export default function Index() {
           </TabsContent>
 
           {/* Classes Tab */}
-          <TabsContent value="classes" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {classes.map((cls) => (
-                <Card key={cls.id} className="p-6 bg-card border-border hover:shadow-lg transition">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h4 className="font-semibold text-foreground text-lg">
-                        {cls.name}
-                      </h4>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {cls.teacher}
-                      </p>
+          <TabsContent value="classes" className="mt-6 space-y-8">
+            {/* Elementary Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Elementary Section</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {classes.filter(c => c.section === "Elementary").map((cls) => (
+                  <Card key={cls.id} className="p-6 bg-card border-border hover:shadow-lg transition">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h4 className="font-semibold text-foreground text-lg">
+                          {cls.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {cls.teacher}
+                        </p>
+                      </div>
+                      <Users className="w-5 h-5 text-primary opacity-20" />
                     </div>
-                    <Users className="w-5 h-5 text-primary opacity-20" />
-                  </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <span className="text-sm text-muted-foreground">Students</span>
-                    <span className="text-lg font-semibold text-foreground">
-                      {cls.students}
-                    </span>
-                  </div>
-                </Card>
-              ))}
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <span className="text-sm text-muted-foreground">Students</span>
+                      <span className="text-lg font-semibold text-foreground">
+                        {cls.students}
+                      </span>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Primary Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-4">Primary Section (P.1 - P.7)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {classes.filter(c => c.section === "Primary").map((cls) => (
+                  <Card key={cls.id} className="p-6 bg-card border-border hover:shadow-lg transition">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h4 className="font-semibold text-foreground text-lg">
+                          {cls.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {cls.teacher}
+                        </p>
+                        {cls.name === "P.7" && (
+                          <p className="text-xs text-accent mt-2 font-medium">
+                            🎓 Final Year
+                          </p>
+                        )}
+                      </div>
+                      <Users className="w-5 h-5 text-primary opacity-20" />
+                    </div>
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <span className="text-sm text-muted-foreground">Students</span>
+                      <span className="text-lg font-semibold text-foreground">
+                        {cls.students}
+                      </span>
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
           </TabsContent>
 
