@@ -16,6 +16,7 @@ import {
   Clock,
   Zap,
 } from "lucide-react";
+import logo from "@/assets/kabojja_logo_3d_5ac142a2_0.png";
 
 // Sample data
 const students = [
@@ -55,9 +56,7 @@ export default function Index() {
       <header className="border-b border-border bg-card sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-primary-foreground" />
-            </div>
+            <img src={logo} alt="School Logo" className="w-12 h-12 object-contain" />
             <div>
               <h1 className="text-xl font-bold text-foreground">
                 Kabojja Parents' Primary School
