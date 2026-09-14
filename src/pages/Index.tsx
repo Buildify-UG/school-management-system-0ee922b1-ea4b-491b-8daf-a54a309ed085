@@ -31,7 +31,7 @@ const classes = [
   { id: 2, name: "Middle", section: "Elementary", teacher: "Mr. Kyeyune", students: 38 },
   { id: 3, name: "Top", section: "Elementary", teacher: "Miss Nambi", students: 36 },
   // Primary Section
-  { id: 4, name: "P.1", section: "Primary", teacher: "Mr. Okiror", students: 40 },
+  { id: 4, name: "P.1", section: "Primary", teacher: "Tr. Namuyonga Janet", students: 40 },
   { id: 5, name: "P.2", section: "Primary", teacher: "Mrs. Nankunda", students: 37 },
   { id: 6, name: "P.3", section: "Primary", teacher: "Mr. Kasozi", students: 39 },
   { id: 7, name: "P.4", section: "Primary", teacher: "Mrs. Akello", students: 41 },
