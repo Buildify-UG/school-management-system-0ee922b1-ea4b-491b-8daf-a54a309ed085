@@ -93,7 +93,7 @@ export default function Index() {
           <TabsList className="grid w-full max-w-md grid-cols-4">
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
             <TabsTrigger value="students">Students</TabsTrigger>
-            <TabsTrigger value="classes">Classes</TabsTrigger>
+            <TabsTrigger value="classes">es</TabsTrigger>
             <TabsTrigger value="calendar">Calendar</TabsTrigger>
           </TabsList>
 
